@@ -21,18 +21,35 @@
 
             <div class="cover-container">
 
-                <div class="masthead clearfix">
+                <div class="masthead clearfix text-center">
                     <div class="inner">
-                        <h1 class="masthead-brand">Comodoro Timer</h1>
+                        <h1 class="masthead-brand text-center">Pomodoro Timer</h1>
                     </div>
                 </div>
 
                 <div class="inner cover">
                     <div id="select">
+                        <div class="session">
+                            <h2>Session length</h2>
+                            <button class="button-session" value="+">+</button>
+                            <input class="input-session" type="text" value="1">
+                            <button class="button-session" value="-">-</button>
+                        </div>
+                        <!-- /.session -->
+                        <div class="break">
+                            <h2>Break length</h2>
+                            <button class="button-break" value="+">+</button>
+                            <input class="input-break" type="text" value="1">
+                            <button class="button-break" value="-">-</button>
+                        </div>
+                        <!-- /.break -->
 
                     </div>
+                    <!-- /#select-->
                 </div>
                 <div id="timer">
+                    <span class="hourglass"></span>
+                    <!-- /.fill -->
 
                 </div>
 
@@ -46,7 +63,7 @@
     <footer>
         <div class="mastfoot">
             <div class="inner">
-                <p>Cover template for <a href="https://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                <p>Created by @gustavo</p>
             </div>
         </div>
     </footer>
