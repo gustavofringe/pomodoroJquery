@@ -32,14 +32,15 @@
                         <div class="session">
                             <h2>Session length</h2>
                             <button class="button-session" value="+">+</button>
-                            <input class="input-session" type="text" value="1">
+                            <!--<input class="input-session" type="text" value="1">-->
+                            <input type="text" id="input-session" value="1">
                             <button class="button-session" value="-">-</button>
                         </div>
                         <!-- /.session -->
                         <div class="break">
                             <h2>Break length</h2>
                             <button class="button-break" value="+">+</button>
-                            <input class="input-break" type="text" value="1">
+                            <input type="text" id="input-break" value="1">
                             <button class="button-break" value="-">-</button>
                         </div>
                         <!-- /.break -->
@@ -47,9 +48,10 @@
                     </div>
                     <!-- /#select-->
                 </div>
+
                 <div id="timer">
                     <span class="hourglass"></span>
-                    <!-- /.fill -->
+                    <div id="timerCount"></div>
 
                 </div>
 
@@ -60,6 +62,7 @@
         </div>
 
     </div>
+
     <footer>
         <div class="mastfoot">
             <div class="inner">
