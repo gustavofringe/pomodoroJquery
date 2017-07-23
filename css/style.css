@@ -111,12 +111,12 @@ h1 {
   text-align: center;
   width: 350px;
   height: 350px;
-  font-size: 4em;
+  font-size: 3em;
   border: 2px solid #99CC00;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
-  z-index: 20;
+  z-index: 30;
   overflow: hidden;
 }
 /* line 54, ../sass/style.scss */
@@ -128,11 +128,15 @@ h1 {
   left: 0;
   right: 0;
   border-radius: 50%;
-  z-index: 2;
+  z-index: 30;
   border: 4px solid #333333;
 }
+/* line 65, ../sass/style.scss */
+#timer #current {
+  line-height: 200px;
+}
 
-/* line 66, ../sass/style.scss */
+/* line 69, ../sass/style.scss */
 .hourglass {
   content: '';
   position: absolute;
@@ -141,4 +145,9 @@ h1 {
   right: 0;
   left: 0;
   z-index: -1;
+}
+
+/* line 78, ../sass/style.scss */
+.reset {
+  visibility: hidden;
 }

@@ -17,12 +17,12 @@
     <body>
     <div class="site-wrapper">
 
-        <div class="site-wrapper-inner">
+        <div class="site-wrapper-inner text-center">
 
-            <div class="cover-container">
+            <div class="cover-container text-center">
 
-                <div class="masthead clearfix text-center">
-                    <div class="inner">
+                <div class="masthead text-center">
+                    <div class="inner text-center">
                         <h1 class="masthead-brand text-center">Pomodoro Timer</h1>
                     </div>
                 </div>
@@ -33,14 +33,14 @@
                             <h2>Session length</h2>
                             <button class="button-session" value="+">+</button>
                             <!--<input class="input-session" type="text" value="1">-->
-                            <input type="text" id="input-session" value="1">
+                            <input type="text" id="session-length" value="1">
                             <button class="button-session" value="-">-</button>
                         </div>
                         <!-- /.session -->
                         <div class="break">
                             <h2>Break length</h2>
                             <button class="button-break" value="+">+</button>
-                            <input type="text" id="input-break" value="1">
+                            <input type="text" id="break-length" value="1">
                             <button class="button-break" value="-">-</button>
                         </div>
                         <!-- /.break -->
@@ -50,12 +50,13 @@
                 </div>
 
                 <div id="timer">
+                    <div id="current">Let's go!</div>
                     <span class="hourglass"></span>
-                    <div id="timerCount"></div>
-
+                    <div id="timerCount">1:00</div>
                 </div>
-
-
+                <div class="reset">
+                    <button id="reset" value="reset" class="btn btn-danger mt-3">Reset</button>
+                </div>
 
             </div>
 

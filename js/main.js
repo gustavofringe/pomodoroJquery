@@ -3,38 +3,61 @@
  *
  *
  * */
-var counterBreak = $('#input-break').val();
-var counterSession = $('#input-session').val();
+var counterSession = 60;
+var counterBreak = 60;
+var counter = counterSession;
+var count;
+var inCourse = 'session';
+var course = 'go';
 /**
  *
  *
  *
  *
- *
  * */
-
 $('.button-session').click(function () {
-    if ($(this).val() == '+') {
-        counterSession++;
-        $("#input-session").val(counterSession);
+    if ($(this).val() === '+') {
+        if (inCourse === 'session') {
+            counter += 60;
+        }
+        counterSession += 60;
+        $('#session-length').val(counterSession / 60);
+        runTime();
     }
-    if ($(this).val() == '-') {
-        if (counterSession > 1) {
-            counterSession--;
-            $("#input-session").val(counterSession);
+    if ($(this).val() === '-') {
+        if (counterSession / 60 > 1) {
+            if (inCourse === 'session') {
+                counter -= 60;
+            }
+            counterSession -= 60;
+            $('#session-length').val(counterSession / 60);
+            runTime();
         }
     }
 });
-
+/**
+ *
+ *
+ *
+ *
+ * */
 $('.button-break').click(function () {
-    if ($(this).val() == '+') {
-        counterBreak++;
-        $("#input-break").val(counterBreak);
+    if ($(this).val() === '+') {
+        if (inCourse === 'break') {
+            counter += 60;
+        }
+        counterBreak += 60;
+        $('#break-length').val(counterBreak / 60);
+        runTime();
     }
-    if ($(this).val() == '-') {
-        if (counterSession > 1) {
-            counterBreak--;
-            $("#input-break").val(counterBreak);
+    if ($(this).val() === '-') {
+        if (counterBreak / 60 > 1) {
+            if (inCourse === 'break') {
+                counter -= 60;
+            }
+            counterBreak -= 60;
+            $('#break-length').val(counterBreak / 60);
+            runTime();
         }
     }
 });
@@ -45,66 +68,94 @@ $('.button-break').click(function () {
  *
  * */
 $('#timer').click(function () {
-    //counterSession *=60;
-    //counterBreak*=60;
-    var x = setInterval(sessionTimer, 1000);
-
-    function sessionTimer() {
-
-        console.log(counterBreak)
-        // var percent = counterSession/counterSession*100;
-        counterSession--;
-        if (counterSession === 0) {
-            counterSession = $('#input-session').val();
-            console.log(counterSession)
-            //counterSession *= 60;
-            if (counterBreak === 0) {
-                counterBreak = $('#input-break').val();
-                counterSession++
-                //counterBreak *= 60;
-            }
-            clearInterval(x);
-            var y = setInterval(breakTimer, 1000);
+    if (course === 'stop') {
+        if (inCourse === 'session') {
+            $('#current').html('SESSION !');
         }
-
-        $('#timerCount').html("s: " + counterSession)
-        /*if(counterSession%60>=10){
-         $('#timerCount').html("session time"+Math.floor(counterSession/60)+":"+counterSession%60)
-         }else{
-         $('#timerCount').html("session time"+Math.floor(counterSession/60)+":"+"0"+counterSession%60)
-         }*/
-        function breakTimer() {
-            console.log(counterSession)
-            counterBreak--;
-            if (counterBreak === 0) {
-                counterBreak = $('#input-break').val();
-                console.log(counterBreak)
-                //counterBreak *= 60;
-                if (counterSession === 0) {
-                counterSession = $('#input-session').val();
-                counterBreak++
-                //counterSession *= 60;
-            }
-
-
-                clearInterval(y);
-                setInterval(sessionTimer, 1000);
-            }
-            $('#timerCount').html("b:" + counterBreak)
-            /*if(counterBreak%60>=10){
-             $('#timerCount').html("break time"+Math.floor(counterBreak/60)+":"+counterBreak%60)
-             }else{
-             $('#timerCount').html("br
-             console.log(counterSession)eak time"+Math.floor(counterBreak/60)+":"+"0"+counterBreak%60)
-             }*/
-        }
+        $('#reset').css('visibility', 'visible');
+        run();
+        course = 'go';
+    } else {
+        pause();
+        course = 'stop';
     }
 });
+/**
+ *
+ *
+ *
+ *
+ * */
+$('#reset').click(function () {
+    window.location.reload();
+});
+/**
+ *
+ *
+ *
+ *
+ *
+ * */
+function runTime() {
+    if (counter % 60 <= 9) {
+        $('#timerCount').html(Math.floor(counter / 60) + ':0' + counter % 60);
+        if (counter <= 0) {
+            clearInterval(count);
+            if (inCourse === 'session') {
+                $('#current').html('BREAK !');
+                $('#timer').css('border', '2px solid red');
+                counter = counterBreak;
+                inCourse = 'break';
+                run();
 
-/*
- $("#timer").click(function(){
- $('.hourglass').animate({
- height:"+=10px",
- width:"+=10px"
- });
- });*/
+            } else {
+                $('#current').html('SESSION !');
+                $('#timer').css('border', '2px solid #99CC00');
+                counter = counterSession;
+                inCourse = 'session';
+                run();
+            }
+        }
+    } else {
+        $('#timerCount').html(Math.floor(counter / 60) + ':' + counter % 60);
+    }
+    animation();
+}
+/**
+ *
+ *
+ *
+ *
+ * */
+function run() {
+    count = setInterval(function () {
+        counter--;
+        runTime();
+    }, 1000);
+}
+/**
+ *
+ *
+ *
+ *
+ * */
+function pause() {
+    clearInterval(count);
+}
+/**
+ *
+ *
+ *
+ *
+ * */
+function animation() {
+    /*if(inCourse === 'session'){
+     var slide = counter/counterSession;
+     }else if (inCourse === 'break'){
+     var slide = counter/counterBreak;
+     }*/
+
+    $('.hourglass').animate({
+        height: '+=1%',
+    })
+}
