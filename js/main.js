@@ -82,7 +82,7 @@ $('#timer').click(function () {
 });
 /**
  *
- *
+ *reset button
  *
  *
  * */
@@ -91,8 +91,8 @@ $('#reset').click(function () {
 });
 /**
  *
- *
- *
+ *function runTime
+ *@return counter session & break
  *
  *
  * */
@@ -107,7 +107,6 @@ function runTime() {
                 counter = counterBreak;
                 inCourse = 'break';
                 run();
-
             } else {
                 $('#current').html('SESSION !');
                 $('#timer').css('border', '2px solid #99CC00');
@@ -123,8 +122,8 @@ function runTime() {
 }
 /**
  *
- *
- *
+ *function run
+ *@return function runTime
  *
  * */
 function run() {
@@ -135,8 +134,8 @@ function run() {
 }
 /**
  *
- *
- *
+ *function pause
+ *@return pause timer when click
  *
  * */
 function pause() {
@@ -145,17 +144,16 @@ function pause() {
 /**
  *
  *
- *
+ *animation function
  *
  * */
 function animation() {
-    /*if(inCourse === 'session'){
-     var slide = counter/counterSession;
+    if(inCourse === 'session'){
+     var slide = counter/counterSession*0.6;
+     $('#timer').css('background', '#99CC00','height', slide+'%');
+
      }else if (inCourse === 'break'){
      var slide = counter/counterBreak;
-     }*/
-
-    $('.hourglass').animate({
-        height: '+=1%',
-    })
+        $('#timer').css('background', 'red');
+     }
 }
