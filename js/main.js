@@ -1,6 +1,6 @@
 /**
  *
- *
+ *variables
  *
  * */
 var counterSession = 60;
@@ -9,9 +9,10 @@ var counter = counterSession;
 var count;
 var inCourse = 'session';
 var course = 'go';
+//=======================================================action
 /**
  *
- *
+ *add & sub session value
  *
  *
  * */
@@ -37,7 +38,7 @@ $('.button-session').click(function () {
 });
 /**
  *
- *
+ *add & sub break value
  *
  *
  * */
@@ -63,7 +64,7 @@ $('.button-break').click(function () {
 });
 /**
  *
- *
+ *run timer
  *
  *
  * */
@@ -89,6 +90,7 @@ $('#timer').click(function () {
 $('#reset').click(function () {
     window.location.reload();
 });
+//===================================================function
 /**
  *
  *function runTime
@@ -97,6 +99,7 @@ $('#reset').click(function () {
  *
  * */
 function runTime() {
+    console.log(counter)
     if (counter % 60 <= 9) {
         $('#timerCount').html(Math.floor(counter / 60) + ':0' + counter % 60);
         if (counter <= 0) {
@@ -149,11 +152,12 @@ function pause() {
  * */
 function animation() {
     if(inCourse === 'session'){
-     var slide = counter/counterSession*0.6;
-     $('#timer').css('background', '#99CC00','height', slide+'%');
+        var effect = counter*24/1000;
+     $('#timer').css('background', '#99CC00');
+     $('#timer').animate({height:'+='+effect+'%'});
+     console.log(counter)
 
-     }else if (inCourse === 'break'){
-     var slide = counter/counterBreak;
+     }else{
         $('#timer').css('background', 'red');
      }
 }
