@@ -73,7 +73,6 @@ $('#timer').click(function () {
         if (inCourse === 'session') {
             $('#current').html('SESSION !');
         }
-        $('#reset').css('visibility', 'visible');
         run();
         course = 'go';
     } else {
@@ -99,29 +98,22 @@ $('#reset').click(function () {
  *
  * */
 function runTime() {
+    $('#reset').css('visibility','visible');
     console.log(counter)
     if (counter % 60 <= 9) {
         $('#timerCount').html(Math.floor(counter / 60) + ':0' + counter % 60);
         if (counter <= 0) {
-            $('.hourglass').css({'height': '0 !important'});
+            $('#hourglass').css('height', '0 !important');
             clearInterval(count);
             if (inCourse === 'session') {
                 $('#current').html('BREAK !');
                 $('#timer').css('border', '2px solid red');
-                //$('.hourglass').css('visibility', 'hidden');
-
-
-
                 counter = counterBreak;
                 inCourse = 'break';
                 run();
             } else {
                 $('#current').html('SESSION !');
                 $('#timer').css('border', '2px solid #99CC00');
-                //$('.hourglass').css({'height': '0 !important'});
-
-
-                //$('.hourglasses').css('visibility', 'hidden');
                 counter = counterSession;
                 inCourse = 'session';
                 run();
@@ -130,7 +122,6 @@ function runTime() {
     } else {
         $('#timerCount').html(Math.floor(counter / 60) + ':' + counter % 60);
     }
-
     animation();
 }
 /**
@@ -162,14 +153,20 @@ function pause() {
  * */
 function animation() {
     if(inCourse === 'session'){
-        //$('.hourglass').css('visibility', 'visible');
-     $('.hourglass').css('background', '#99CC00');
-     $('.hourglass').animate({'height':'100%'},counter*1000);
-     }else{
+        $('#hourglass').css('background', '#99CC00');
+        var secs = 2/counterSession;
+        console.log(secs)
+        var denom =2/ counter;
+        console.log(denom)
 
-        //$('.hourglasses').css('visibility', 'visible');
-        $('.hourglass').animate({'height':'100%'},counter*1000);
-        $('.hourglass').css('background', 'red');
-
+        var perc = Math.abs((secs / denom) * 100 - 100);
+        console.log(perc)
+        $('#hourglass').css('height',perc+ '%');
+    }else{
+        $('#hourglass').css('background', 'red');
+        var secs = 2/counterBreak;
+        var denom =2/ counter;
+        var perc = Math.abs((secs / denom) * 100 - 100);
+        $('#hourglass').css('height',perc+ '%');
     }
 }
