@@ -69,7 +69,16 @@ h1{
 .hourglass {
   content: '';
   position: absolute;
-  background: $green;
+  //background: $green;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+}
+.hourglasses {
+  content: '';
+  position: absolute;
+  //background: $green;
   bottom: 0;
   right: 0;
   left: 0;

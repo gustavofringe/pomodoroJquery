@@ -103,16 +103,25 @@ function runTime() {
     if (counter % 60 <= 9) {
         $('#timerCount').html(Math.floor(counter / 60) + ':0' + counter % 60);
         if (counter <= 0) {
+            $('.hourglass').css({'height': '0 !important'});
             clearInterval(count);
             if (inCourse === 'session') {
                 $('#current').html('BREAK !');
                 $('#timer').css('border', '2px solid red');
+                //$('.hourglass').css('visibility', 'hidden');
+
+
+
                 counter = counterBreak;
                 inCourse = 'break';
                 run();
             } else {
                 $('#current').html('SESSION !');
                 $('#timer').css('border', '2px solid #99CC00');
+                //$('.hourglass').css({'height': '0 !important'});
+
+
+                //$('.hourglasses').css('visibility', 'hidden');
                 counter = counterSession;
                 inCourse = 'session';
                 run();
@@ -121,6 +130,7 @@ function runTime() {
     } else {
         $('#timerCount').html(Math.floor(counter / 60) + ':' + counter % 60);
     }
+
     animation();
 }
 /**
@@ -152,12 +162,14 @@ function pause() {
  * */
 function animation() {
     if(inCourse === 'session'){
-        var effect = counter*24/1000;
-     $('#timer').css('background', '#99CC00');
-     $('#timer').animate({height:'+='+effect+'%'});
-     console.log(counter)
-
+        //$('.hourglass').css('visibility', 'visible');
+     $('.hourglass').css('background', '#99CC00');
+     $('.hourglass').animate({'height':'100%'},counter*1000);
      }else{
-        $('#timer').css('background', 'red');
-     }
+
+        //$('.hourglasses').css('visibility', 'visible');
+        $('.hourglass').animate({'height':'100%'},counter*1000);
+        $('.hourglass').css('background', 'red');
+
+    }
 }
