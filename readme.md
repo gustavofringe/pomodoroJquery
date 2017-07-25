@@ -1,0 +1,2 @@
+## Pomodoro  
+For working jquery 
