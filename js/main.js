@@ -155,12 +155,8 @@ function animation() {
     if(inCourse === 'session'){
         $('#hourglass').css('background', '#99CC00');
         var secs = 2/counterSession;
-        console.log(secs)
         var denom =2/ counter;
-        console.log(denom)
-
         var perc = Math.abs((secs / denom) * 100 - 100);
-        console.log(perc)
         $('#hourglass').css('height',perc+ '%');
     }else{
         $('#hourglass').css('background', 'red');
